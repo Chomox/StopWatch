@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StopWatchView" customModule="StopWatch" customModuleProvider="target">
+            <connections>
+                <outlet property="lapButton" destination="lun-4H-Sms" id="h46-Se-X6w"/>
+                <outlet property="lapsTableView" destination="kza-FL-Faa" id="c4D-Qm-3xZ"/>
+                <outlet property="playButton" destination="dRX-ky-RUt" id="2DG-M2-tLX"/>
+                <outlet property="timeLabel" destination="hCn-w0-EXw" id="ZHC-0m-xtZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kza-FL-Faa">
+                    <rect key="frame" x="0.0" y="403.5" width="414" height="458.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-w0-EXw">
+                    <rect key="frame" x="0.0" y="44" width="414" height="219.5"/>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lun-4H-Sms">
+                    <rect key="frame" x="16" y="303.5" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="1ve-29-4eF"/>
+                        <constraint firstAttribute="width" constant="90" id="WIt-NT-FJG"/>
+                        <constraint firstAttribute="width" secondItem="lun-4H-Sms" secondAttribute="height" multiplier="1:1" id="clR-cF-uX8"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-ky-RUt">
+                    <rect key="frame" x="308" y="303.5" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="M0b-yx-9gc"/>
+                        <constraint firstAttribute="width" secondItem="dRX-ky-RUt" secondAttribute="height" multiplier="1:1" id="e5x-0H-8Wt"/>
+                        <constraint firstAttribute="width" constant="90" id="ekk-4Z-OgF"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hCn-w0-EXw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5IB-Vv-omw"/>
+                <constraint firstItem="hCn-w0-EXw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="BYH-dV-el0"/>
+                <constraint firstItem="kza-FL-Faa" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ScA-pc-L4s"/>
+                <constraint firstItem="hCn-w0-EXw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.245" id="VFv-XA-yJr"/>
+                <constraint firstItem="dRX-ky-RUt" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="top" id="XGO-dR-OTy"/>
+                <constraint firstItem="kza-FL-Faa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bMN-No-obS"/>
+                <constraint firstItem="kza-FL-Faa" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="bottom" constant="10" id="eBs-O9-b37"/>
+                <constraint firstItem="kza-FL-Faa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="egI-Cy-Azj"/>
+                <constraint firstItem="lun-4H-Sms" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lib-B3-ECB"/>
+                <constraint firstItem="hCn-w0-EXw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="oyv-IE-hc0"/>
+                <constraint firstItem="lun-4H-Sms" firstAttribute="top" secondItem="hCn-w0-EXw" secondAttribute="bottom" constant="40" id="qYy-1J-U4e"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dRX-ky-RUt" secondAttribute="trailing" constant="16" id="rHU-9l-FkX"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-213.04347826086959" y="207.58928571428569"/>
+        </view>
+    </objects>
+</document>
