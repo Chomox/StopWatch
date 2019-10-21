@@ -12,7 +12,7 @@
             <connections>
                 <outlet property="lapButton" destination="lun-4H-Sms" id="h46-Se-X6w"/>
                 <outlet property="lapsTableView" destination="kza-FL-Faa" id="c4D-Qm-3xZ"/>
-                <outlet property="playButton" destination="dRX-ky-RUt" id="2DG-M2-tLX"/>
+                <outlet property="startButton" destination="dRX-ky-RUt" id="3cx-cf-8wg"/>
                 <outlet property="timeLabel" destination="hCn-w0-EXw" id="ZHC-0m-xtZ"/>
             </connections>
         </placeholder>

@@ -18,7 +18,7 @@ class StopWatchView: UIView {
     }
 	
 	@IBOutlet weak var timeLabel: UILabel!
-	@IBOutlet weak var playButton: UIButton!
+	@IBOutlet weak var startButton: UIButton!
 	@IBOutlet weak var lapButton: UIButton!
 	@IBOutlet weak var lapsTableView: UITableView!
 	
@@ -45,8 +45,8 @@ class StopWatchView: UIView {
 	
 	//MARK: - Appearance
 	private func setupAppearance(){
-		playButton.layer.cornerRadius = playButton.frame.height / 2
-		playButton.backgroundColor = .green
+		startButton.layer.cornerRadius = startButton.frame.height / 2
+		startButton.backgroundColor = .green
 		//playButton.addTarget(self, action: #selector(timerValidSwitch), for: .touchUpInside)
 		
 		lapButton.layer.cornerRadius = lapButton.frame.height / 2
