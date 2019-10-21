@@ -38,10 +38,8 @@ class StopWatchViewController: UIViewController {
 	}
 	
 	@IBAction private func addButtonTapped(){
-		//停止している場合にタップされた場合、リセットする
 		switch stopWatchModel.isCounting {
 		case true:
-			//ここでaddlapしてリロードして再度リスト取得している
 			self.stopWatchModel.add()
 			stopWatchView?.lapsTableView.reloadData()
 		case false:
@@ -66,7 +64,6 @@ class StopWatchViewController: UIViewController {
 		super.viewDidLoad()
 		
 		stopWatchView = self.view as? StopWatchView
-//		stopWatchView?.lapsTableView.delegate = self
         stopWatchView?.lapsTableView.dataSource = stopWatchModel
 		
 		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -85,7 +82,6 @@ class StopWatchViewController: UIViewController {
 	
 	private func _changeButtonsAppearance(timerValid: Bool){
 		stopWatchView?.startButton.setTitle( timerValid ? "Stop" : "Start", for: .normal)
-		//FIXME: 色は単色をそのまま使わない
 		stopWatchView?.startButton.backgroundColor = timerValid ? .red : .green
 		stopWatchView?.lapButton.setTitle( timerValid ? "Lap" : "Reset", for: .normal)
 	}

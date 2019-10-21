@@ -17,8 +17,6 @@ final class StopWatchModel: NSObject {
 		case laps = "Laps"
 	}
 	
-	
-	//FIXME: - ここまでいらない(もっと簡略化する)
 	private var minutes = 0
 	private var seconds = 0
 	private var milliSecond = 0
@@ -51,8 +49,6 @@ final class StopWatchModel: NSObject {
 		super.init()
 		
 		self.timeText = UserDefaults.standard.string(forKey: SavePropertiesKey.time.rawValue) ?? ""
-		print(timeText)
-		
 		self.lapTimeText = UserDefaults.standard.string(forKey: SavePropertiesKey.lapTime.rawValue) ?? ""
 		self.laps = UserDefaults.standard.array(forKey: SavePropertiesKey.laps.rawValue) as? [String] ?? [String]()
 		
@@ -114,10 +110,7 @@ final class StopWatchModel: NSObject {
 	}
 	
 	internal func add(){
-		//ここを総合タイムじゃない時間にする
 		laps.insert(lapTimeText, at: 0)
-		//撮れてますねぇ！！！！！！！！！！！
-		//そこのcellを探し出す？(なんかよくなさそう)
 		self.shortTimeText = laps.min()!
 		self.longTimeText = laps.max()!
 		
@@ -125,12 +118,6 @@ final class StopWatchModel: NSObject {
 		self.shortTimeIndex = laps.firstIndex(of: self.shortTimeText)!
 		self.longTimeIndex = laps.firstIndex(of: self.longTimeText)!
 		
-		print("---short\(self.shortTimeIndex) \(self.shortTimeText)")
-		print("---long\(self.longTimeIndex)  \(self.longTimeText)")
-		
-		//でもここからじゃテーブルビューに手を加えられない
-		
-
 		lapMilliSecond = 0
 		lapSeconds = 0
 		lapMinutes = 0

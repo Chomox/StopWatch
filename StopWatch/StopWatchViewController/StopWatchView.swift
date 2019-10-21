@@ -47,10 +47,8 @@ class StopWatchView: UIView {
 	private func setupAppearance(){
 		startButton.layer.cornerRadius = startButton.frame.height / 2
 		startButton.backgroundColor = .green
-		//playButton.addTarget(self, action: #selector(timerValidSwitch), for: .touchUpInside)
 		
 		lapButton.layer.cornerRadius = lapButton.frame.height / 2
 		lapButton.backgroundColor = .gray
-		//lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 	}
 }
