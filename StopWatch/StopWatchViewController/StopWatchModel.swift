@@ -10,19 +10,28 @@ import UIKit
 
 final class StopWatchModel: NSObject {
 	
+	
 	//MARK: - Constants
-	private enum SavePropertiesKey: String {
+	private enum PropertySaveKeys: String {
 		case time = "Time_String"
 		case lapTime = "LapTime_String"
 		case laps = "Laps"
-		case shortTimeIndex = "ShortTime_Index"
-		case longTimeIndex = "LongTime_Index"
 		case count = "Count"
+	}
+	
+	private enum timeTemplateString: String {
+		case a = ""
 	}
 	
 	
 	//MARK: - Properties
-	private var lapCount: Int = 0
+	private var count:			Int = 0
+	private var lapCount:		Int = 0
+	private var timeText:		String = "00:00.00"
+	private var lapTimeText:	String = ""
+	private var laps:			[String] = []
+	
+	private(set) var isCounting: Bool = false
 	
 	private var shortTimeIndex: Int? {
 		get {
@@ -36,42 +45,33 @@ final class StopWatchModel: NSObject {
 		}
 	}
 	
-	private var timeText = "00:00.00"
-	private var lapTimeText = ""
-	
-	private var count: Int = 0
-	
-	private var laps: [String] = []
-	
-	private(set) var isCounting: Bool = false
-	
 	var time: String {
 		get {
 			return timeText
 		}
 	}
 	
+	
 	//MARK: - Initialize
 	override init(){
 		super.init()
 		
-		self.timeText = UserDefaults.standard.string(forKey: SavePropertiesKey.time.rawValue) ?? ""
-		self.lapTimeText = UserDefaults.standard.string(forKey: SavePropertiesKey.lapTime.rawValue) ?? ""
-		self.laps = UserDefaults.standard.array(forKey: SavePropertiesKey.laps.rawValue) as? [String] ?? [String]()
+		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.time.rawValue) ?? ""
+		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTime.rawValue) ?? ""
+		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
 		 
-		self.count = UserDefaults.standard.integer(forKey: SavePropertiesKey.count.rawValue)
+		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name(rawValue: "a"), object: nil)
 	}
 	
-	//値の保存
+	
+	//MARK: - Save
 	@objc private func save(){
-		UserDefaults.standard.set(timeText, forKey: SavePropertiesKey.time.rawValue)
-		UserDefaults.standard.set(lapTimeText, forKey: SavePropertiesKey.lapTime.rawValue)
-		UserDefaults.standard.set(laps, forKey: SavePropertiesKey.laps.rawValue)
-		UserDefaults.standard.set(shortTimeIndex, forKey: SavePropertiesKey.shortTimeIndex.rawValue)
-		UserDefaults.standard.set(longTimeIndex, forKey: SavePropertiesKey.longTimeIndex.rawValue)
-		UserDefaults.standard.set(count, forKey: SavePropertiesKey.count.rawValue)
+		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.time.rawValue)
+		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTime.rawValue)
+		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
+		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
 	}
 	
 
@@ -86,10 +86,10 @@ final class StopWatchModel: NSObject {
 	
 	func update(){
 		count += 1
-		let ms = count % 100
-		let s = (count - ms) / 100 % 60
-		let m = (count - s - ms) / 6000 % 3600
-		timeText = String (format: "%02d:%02d.%02d", m,s,ms)
+		let milliSecond = count % 100
+		let seconds = (count - milliSecond) / 100 % 60
+		let minutes = (count - seconds - milliSecond) / 6000 % 3600
+		timeText = String (format: "%02d:%02d.%02d", minutes,seconds,milliSecond)
 		
 		lapCount += 1
 		let lms = lapCount % 100
@@ -121,13 +121,9 @@ extension StopWatchModel: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
-		cell.tintColor = .black
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
 		cell.detailTextLabel?.text = laps[indexPath.row]
 		cell.selectionStyle = .none
-		
-		cell.detailTextLabel?.textColor = .black
-		cell.textLabel?.textColor = .black
 		
 		switch indexPath.row {
 		case shortTimeIndex:
@@ -137,8 +133,8 @@ extension StopWatchModel: UITableViewDataSource {
 			cell.detailTextLabel?.textColor = .red
 			cell.textLabel?.textColor = .red
 		default:
-			cell.detailTextLabel?.textColor = .white
-			cell.textLabel?.textColor = .white
+			cell.detailTextLabel?.textColor = .black
+			cell.textLabel?.textColor = .black
 		}
 		return cell
 	}
