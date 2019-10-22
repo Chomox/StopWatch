@@ -10,6 +10,13 @@ import UIKit
 
 class StopWatchView: UIView {
 	
+	
+	//MARK: - Constants
+	private enum Size {
+		static let font: CGFloat = 72.0
+	}
+	
+	
 	//MARK: - Properties
 	private var className: String {
         get {
@@ -23,6 +30,7 @@ class StopWatchView: UIView {
 	@IBOutlet weak var lapsTableView: UITableView!
 	
 
+	//MARK: - Initialize
     override public init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -38,7 +46,6 @@ class StopWatchView: UIView {
             view.frame = self.bounds
             self.addSubview(view)
         }
-		
 		self.setupAppearance()
     }
 	
@@ -51,6 +58,6 @@ class StopWatchView: UIView {
 		lapButton.layer.cornerRadius = lapButton.frame.height / 2
 		lapButton.backgroundColor = .gray
 		
-		timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 72, weight: .regular)
+		timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: Size.font, weight: .regular)
 	}
 }

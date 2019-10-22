@@ -17,40 +17,28 @@ final class StopWatchModel: NSObject {
 		case laps = "Laps"
 		case shortTimeIndex = "ShortTime_Index"
 		case longTimeIndex = "LongTime_Index"
+		case count = "Count"
 	}
 	
 	
+	//MARK: - Properties
 	private var lapCount: Int = 0
-	
-	private var longTimeText: String? {
-		get {
-			self.laps.max()
-		}
-	}
-	
-	private var shortTimeText: String? {
-		get {
-			self.laps.min()
-		}
-	}
 	
 	private var shortTimeIndex: Int? {
 		get {
-			laps.firstIndex(of: self.shortTimeText ?? "")
+			laps.firstIndex(of: self.laps.min() ?? "")
 		}
 	}
 	
 	private var longTimeIndex: Int? {
 		get {
-			laps.firstIndex(of: self.longTimeText ?? "")
+			laps.firstIndex(of: self.laps.max() ?? "")
 		}
 	}
 	
 	private var timeText = "00:00.00"
 	private var lapTimeText = ""
 	
-	
-	//MARK: - Properties
 	private var count: Int = 0
 	
 	private var laps: [String] = []
@@ -70,6 +58,8 @@ final class StopWatchModel: NSObject {
 		self.timeText = UserDefaults.standard.string(forKey: SavePropertiesKey.time.rawValue) ?? ""
 		self.lapTimeText = UserDefaults.standard.string(forKey: SavePropertiesKey.lapTime.rawValue) ?? ""
 		self.laps = UserDefaults.standard.array(forKey: SavePropertiesKey.laps.rawValue) as? [String] ?? [String]()
+		 
+		self.count = UserDefaults.standard.integer(forKey: SavePropertiesKey.count.rawValue)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name(rawValue: "a"), object: nil)
 	}
@@ -81,6 +71,7 @@ final class StopWatchModel: NSObject {
 		UserDefaults.standard.set(laps, forKey: SavePropertiesKey.laps.rawValue)
 		UserDefaults.standard.set(shortTimeIndex, forKey: SavePropertiesKey.shortTimeIndex.rawValue)
 		UserDefaults.standard.set(longTimeIndex, forKey: SavePropertiesKey.longTimeIndex.rawValue)
+		UserDefaults.standard.set(count, forKey: SavePropertiesKey.count.rawValue)
 	}
 	
 
