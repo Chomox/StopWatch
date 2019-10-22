@@ -50,5 +50,7 @@ class StopWatchView: UIView {
 		
 		lapButton.layer.cornerRadius = lapButton.frame.height / 2
 		lapButton.backgroundColor = .gray
+		
+		timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 72, weight: .regular)
 	}
 }

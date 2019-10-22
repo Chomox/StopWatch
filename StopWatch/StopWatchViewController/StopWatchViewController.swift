@@ -68,6 +68,8 @@ class StopWatchViewController: UIViewController {
 		
 		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 		stopWatchView?.startButton.addTarget(self, action: #selector(timerValidSwitch), for: .touchUpInside)
+		
+		stopWatchView?.timeLabel.text = stopWatchModel.time
 	}
 	
 	
