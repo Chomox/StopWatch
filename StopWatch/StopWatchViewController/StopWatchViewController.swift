@@ -10,10 +10,10 @@ import UIKit
 
 class StopWatchViewController: UIViewController {
 
+	
 	//MARK: - Properties
 	private let stopWatchModel = StopWatchModel()
 	private var stopWatchView: StopWatchView?
-	
 	private weak var timer :Timer?
 	private weak var lapTimer :Timer?
 
@@ -33,7 +33,6 @@ class StopWatchViewController: UIViewController {
 			lapTimer = nil
 			stopWatchModel.stop()
 		}
-		
 		_changeButtonsAppearance(timerValid: stopWatchModel.isCounting)
 	}
 	
@@ -68,6 +67,8 @@ class StopWatchViewController: UIViewController {
 		
 		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 		stopWatchView?.startButton.addTarget(self, action: #selector(timerValidSwitch), for: .touchUpInside)
+		
+		stopWatchView?.timeLabel.text = stopWatchModel.time
 	}
 	
 	
