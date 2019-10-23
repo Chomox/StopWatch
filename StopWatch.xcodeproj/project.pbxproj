@@ -45,6 +45,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF78945A2361060000844C66 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BFB3D4082354F62B00DD716C /* StopWatchViewController.swift */,
+				BFB3D40A2354F62B00DD716C /* StopWatch.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF78945B2361062000844C66 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFB3D4192354F76B00DD716C /* StopWatchView.swift */,
+				BFB1FA6F235B193900C510DA /* StopWatchView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF78945C2361062800844C66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF718375235668F600030550 /* StopWatchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BFB3D3F82354F62B00DD716C = {
 			isa = PBXGroup;
 			children = (
@@ -78,11 +104,9 @@
 		BFB3D4182354F6FA00DD716C /* StopWatchViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BFB3D4082354F62B00DD716C /* StopWatchViewController.swift */,
-				BFB3D40A2354F62B00DD716C /* StopWatch.storyboard */,
-				BFB3D4192354F76B00DD716C /* StopWatchView.swift */,
-				BF718375235668F600030550 /* StopWatchModel.swift */,
-				BFB1FA6F235B193900C510DA /* StopWatchView.xib */,
+				BF78945C2361062800844C66 /* Model */,
+				BF78945B2361062000844C66 /* View */,
+				BF78945A2361060000844C66 /* Controller */,
 			);
 			path = StopWatchViewController;
 			sourceTree = "<group>";
