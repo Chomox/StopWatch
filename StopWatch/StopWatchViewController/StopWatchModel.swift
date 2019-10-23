@@ -13,8 +13,8 @@ final class StopWatchModel: NSObject {
 	
 	//MARK: - Constants
 	private enum PropertySaveKeys: String {
-		case time = "Time_String"
-		case lapTime = "LapTime_String"
+		case timeText = "Time_String"
+		case lapTimeText = "LapTime_String"
 		case laps = "Laps"
 		case count = "Count"
 	}
@@ -56,8 +56,8 @@ final class StopWatchModel: NSObject {
 	override init(){
 		super.init()
 		
-		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.time.rawValue) ?? ""
-		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTime.rawValue) ?? ""
+		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
+		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
 		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
 		 
 		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
@@ -68,8 +68,8 @@ final class StopWatchModel: NSObject {
 	
 	//MARK: - Save
 	@objc private func save(){
-		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.time.rawValue)
-		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTime.rawValue)
+		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
+		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
 		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
 		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
 	}
@@ -110,6 +110,11 @@ final class StopWatchModel: NSObject {
 		lapCount = 0
 		
 		timeText = "00:00.00"
+		
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
 	}
 }
 
