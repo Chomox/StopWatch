@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF718376235668F600030550 /* StopWatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF718375235668F600030550 /* StopWatchModel.swift */; };
+		BF7894592361038B00844C66 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7894582361038B00844C66 /* NotificationExtension.swift */; };
 		BFB1FA70235B193900C510DA /* StopWatchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB1FA6F235B193900C510DA /* StopWatchView.xib */; };
 		BFB3D4052354F62B00DD716C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3D4042354F62B00DD716C /* AppDelegate.swift */; };
 		BFB3D4072354F62B00DD716C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3D4062354F62B00DD716C /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		BF718375235668F600030550 /* StopWatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchModel.swift; sourceTree = "<group>"; };
+		BF7894582361038B00844C66 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		BFB1FA6F235B193900C510DA /* StopWatchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopWatchView.xib; sourceTree = "<group>"; };
 		BFB3D4012354F62B00DD716C /* StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB3D4042354F62B00DD716C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				BFB3D40D2354F62C00DD716C /* Assets.xcassets */,
 				BFB3D40F2354F62C00DD716C /* LaunchScreen.storyboard */,
 				BFB3D4122354F62C00DD716C /* Info.plist */,
+				BF7894582361038B00844C66 /* NotificationExtension.swift */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			files = (
 				BF718376235668F600030550 /* StopWatchModel.swift in Sources */,
 				BFB3D4092354F62B00DD716C /* StopWatchViewController.swift in Sources */,
+				BF7894592361038B00844C66 /* NotificationExtension.swift in Sources */,
 				BFB3D4052354F62B00DD716C /* AppDelegate.swift in Sources */,
 				BFB3D41A2354F76B00DD716C /* StopWatchView.swift in Sources */,
 				BFB3D4072354F62B00DD716C /* SceneDelegate.swift in Sources */,

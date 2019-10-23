@@ -59,10 +59,9 @@ final class StopWatchModel: NSObject {
 		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
 		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
 		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
-		 
 		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name(rawValue: "a"), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
 	}
 	
 	
