@@ -15,22 +15,22 @@ class StopWatchViewController: UIViewController {
 	private let stopWatchModel = StopWatchModel()
 	private var stopWatchView: StopWatchView?
 	private weak var timer :Timer?
-	private weak var lapTimer :Timer?
+//	private weak var lapTimer :Timer?
 
 	
 	//MARK: - Actions
 	@IBAction private func timerValidSwitch(){
 		if timer == nil {
 			timer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
-			lapTimer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
+//			lapTimer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
 			RunLoop.current.add(timer!, forMode: .common)
-			RunLoop.current.add(lapTimer!, forMode: .common)
+//			RunLoop.current.add(lapTimer!, forMode: .common)
 			stopWatchModel.start()
 		} else {
 			timer?.invalidate()
-			lapTimer?.invalidate()
+//			lapTimer?.invalidate()
 			timer = nil
-			lapTimer = nil
+//			lapTimer = nil
 			stopWatchModel.stop()
 		}
 		_changeButtonsAppearance(timerValid: stopWatchModel.isCounting)
