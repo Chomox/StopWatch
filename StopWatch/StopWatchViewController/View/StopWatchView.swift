@@ -24,9 +24,28 @@ class StopWatchView: UIView {
         }
     }
 	
-	@IBOutlet weak var timeLabel: UILabel!
-	@IBOutlet weak var startButton: UIButton!
-	@IBOutlet weak var lapButton: UIButton!
+	@IBOutlet weak var timeLabel: UILabel! {
+		willSet {
+			newValue.font = UIFont.monospacedDigitSystemFont(ofSize: Size.font, weight: .regular)
+		}
+	}
+	
+	
+	@IBOutlet weak var startButton: UIButton! {
+		willSet {
+			newValue.layer.cornerRadius = newValue.frame.height / 2
+			newValue.backgroundColor = .green
+		}
+	}
+	
+	@IBOutlet weak var lapButton: UIButton! {
+		willSet {
+			newValue.layer.cornerRadius = newValue.frame.height / 2
+			newValue.backgroundColor = .gray
+		}
+		
+	}
+	
 	@IBOutlet weak var lapsTableView: UITableView!
 	
 
@@ -46,18 +65,5 @@ class StopWatchView: UIView {
             view.frame = self.bounds
             self.addSubview(view)
         }
-		self.setupAppearance()
     }
-	
-	
-	//MARK: - Appearance
-	private func setupAppearance(){
-		startButton.layer.cornerRadius = startButton.frame.height / 2
-		startButton.backgroundColor = .green
-		
-		lapButton.layer.cornerRadius = lapButton.frame.height / 2
-		lapButton.backgroundColor = .gray
-		
-		timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: Size.font, weight: .regular)
-	}
 }

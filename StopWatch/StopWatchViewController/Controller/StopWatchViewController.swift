@@ -9,31 +9,36 @@
 import UIKit
 
 class StopWatchViewController: UIViewController {
+	
+	
+	//MARK: - Constant
+	private enum ButtonState: String {
+		case start = "Start"
+		case stop = "Stop"
+		case lap = "Lap"
+		case reset = "Reset"
+	}
 
 	
 	//MARK: - Properties
 	private let stopWatchModel = StopWatchModel()
 	private var stopWatchView: StopWatchView?
 	private weak var timer :Timer?
-//	private weak var lapTimer :Timer?
-
+	
 	
 	//MARK: - Actions
-	@IBAction private func timerValidSwitch(){
+	@IBAction private func startButtonTapped(){
 		if timer == nil {
 			timer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
-//			lapTimer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
 			RunLoop.current.add(timer!, forMode: .common)
-//			RunLoop.current.add(lapTimer!, forMode: .common)
 			stopWatchModel.start()
 		} else {
 			timer?.invalidate()
-//			lapTimer?.invalidate()
+			
 			timer = nil
-//			lapTimer = nil
 			stopWatchModel.stop()
 		}
-		_changeButtonsAppearance(timerValid: stopWatchModel.isCounting)
+		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
 	}
 	
 	@IBAction private func addButtonTapped(){
@@ -43,7 +48,7 @@ class StopWatchViewController: UIViewController {
 			stopWatchView?.lapsTableView.reloadData()
 		case false:
 			//ここなんでLap?
-			stopWatchView?.lapButton.titleLabel?.text = "Lap"
+			stopWatchView?.lapButton.titleLabel?.text = ButtonState.lap.rawValue
 
 			stopWatchModel.reset()
 			stopWatchView?.lapsTableView.reloadData()
@@ -66,30 +71,35 @@ class StopWatchViewController: UIViewController {
         stopWatchView?.lapsTableView.dataSource = stopWatchModel
 		
 		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-		stopWatchView?.startButton.addTarget(self, action: #selector(timerValidSwitch), for: .touchUpInside)
+		stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
 		
 		stopWatchView?.timeLabel.text = stopWatchModel.time
+		
+		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
 	}
 	
 	
 	//MARK: - Appearance
-	private func _viewInitialize(){
-		stopWatchView?.timeLabel.backgroundColor = UIColor(red: 92/255, green: 98/255, blue: 114/255, alpha: 1.0)
-		stopWatchView?.timeLabel.tintColor = .white
-		stopWatchView?.timeLabel.text = stopWatchModel.time
-		
-		_changeButtonsAppearance(timerValid: stopWatchModel.isCounting)
-	}
+//	private func _viewInitialize(){
+//		stopWatchView?.timeLabel.backgroundColor = UIColor(red: 92/255, green: 98/255, blue: 114/255, alpha: 1.0)
+//		stopWatchView?.timeLabel.tintColor = .white
+//		stopWatchView?.timeLabel.text = stopWatchModel.time
+//
+//		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
+//	}
 	
-	private func _changeButtonsAppearance(timerValid: Bool){
-		stopWatchView?.startButton.setTitle( timerValid ? "Stop" : "Start", for: .normal)
+	private func _switchButtonsAppearance(timerValid: Bool){
+		stopWatchView?.startButton.setTitle( timerValid ? ButtonState.stop.rawValue : ButtonState.start.rawValue, for: .normal)
+		//FIXME: そのままの色にしない
 		stopWatchView?.startButton.backgroundColor = timerValid ? .red : .green
-		stopWatchView?.lapButton.setTitle( timerValid ? "Lap" : "Reset", for: .normal)
+		stopWatchView?.lapButton.setTitle( timerValid ? ButtonState.lap.rawValue : ButtonState.reset.rawValue, for: .normal)
 	}
 	
 	
 	//MARK: - TimerHandler
 	@objc private func updateStopWatch(){
+		
+		
 		stopWatchModel.update()
 		self.stopWatchView?.timeLabel.text = stopWatchModel.time
 	}
