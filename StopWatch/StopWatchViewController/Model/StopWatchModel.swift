@@ -127,6 +127,7 @@ extension StopWatchModel: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
+		cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 18, weight: .regular)
 		cell.detailTextLabel?.text = laps[indexPath.row]
 		cell.selectionStyle = .none
 		
