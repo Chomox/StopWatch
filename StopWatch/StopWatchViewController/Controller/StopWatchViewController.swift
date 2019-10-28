@@ -10,7 +10,6 @@ import UIKit
 
 class StopWatchViewController: UIViewController {
 	
-	
 	//MARK: - Constant
 	private enum ButtonState: String {
 		case start = "Start"
@@ -58,7 +57,7 @@ class StopWatchViewController: UIViewController {
 	}
 	
 	
-	//MARK: - View Life Cycle
+	//MARK: - Life Cycle
 	override func loadView() {
 		super.loadView()
 		self.view = StopWatchView()
@@ -80,14 +79,6 @@ class StopWatchViewController: UIViewController {
 	
 	
 	//MARK: - Appearance
-//	private func _viewInitialize(){
-//		stopWatchView?.timeLabel.backgroundColor = UIColor(red: 92/255, green: 98/255, blue: 114/255, alpha: 1.0)
-//		stopWatchView?.timeLabel.tintColor = .white
-//		stopWatchView?.timeLabel.text = stopWatchModel.time
-//
-//		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
-//	}
-	
 	private func _switchButtonsAppearance(timerValid: Bool){
 		stopWatchView?.startButton.setTitle( timerValid ? ButtonState.stop.rawValue : ButtonState.start.rawValue, for: .normal)
 		//FIXME: そのままの色にしない
@@ -98,8 +89,6 @@ class StopWatchViewController: UIViewController {
 	
 	//MARK: - TimerHandler
 	@objc private func updateStopWatch(){
-		
-		
 		stopWatchModel.update()
 		self.stopWatchView?.timeLabel.text = stopWatchModel.time
 	}
