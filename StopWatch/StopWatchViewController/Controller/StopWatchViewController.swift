@@ -46,8 +46,9 @@ class StopWatchViewController: UIViewController {
 			self.stopWatchModel.add()
 			stopWatchView?.lapsTableView.reloadData()
 		case false:
-			//ここなんでLap?
-			stopWatchView?.lapButton.titleLabel?.text = ButtonState.lap.rawValue
+			
+			//TODO: - ResetしたらLapにTextを変更して、Buttonを無効化する
+//			stopWatchView?.lapButton.titleLabel?.text = ButtonState.lap.rawValue
 
 			stopWatchModel.reset()
 			stopWatchView?.lapsTableView.reloadData()
