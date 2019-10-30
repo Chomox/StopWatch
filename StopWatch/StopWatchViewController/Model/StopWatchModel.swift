@@ -118,7 +118,7 @@ final class StopWatchModel: NSObject {
 	}
 }
 
-extension StopWatchModel: UITableViewDataSource {
+extension StopWatchModel: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		laps.count
@@ -128,10 +128,7 @@ extension StopWatchModel: UITableViewDataSource {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
 		
-		//FIXME: - Cell Fontのズレを直す
 		cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 18, weight: .regular)
-		
-		
 		cell.detailTextLabel?.text = laps[indexPath.row]
 		cell.selectionStyle = .none
 		
@@ -147,5 +144,9 @@ extension StopWatchModel: UITableViewDataSource {
 			cell.textLabel?.textColor = .black
 		}
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 	}
 }
