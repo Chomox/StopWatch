@@ -40,7 +40,9 @@
                         <constraint firstAttribute="width" constant="90" id="WIt-NT-FJG"/>
                         <constraint firstAttribute="width" secondItem="lun-4H-Sms" secondAttribute="height" multiplier="1:1" id="clR-cF-uX8"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-ky-RUt">
                     <rect key="frame" x="308" y="303.5" width="90" height="90"/>

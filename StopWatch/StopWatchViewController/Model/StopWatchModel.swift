@@ -12,6 +12,12 @@ final class StopWatchModel: NSObject {
 	
 	
 	//MARK: - Constants
+	public enum TimerState: String {
+		case valid
+		case invalid
+		case `default`
+	}
+	
 	private enum PropertySaveKeys: String {
 		case timeText = "Time_String"
 		case lapTimeText = "LapTime_String"
@@ -26,13 +32,13 @@ final class StopWatchModel: NSObject {
 	
 	
 	//MARK: - Properties
-	private var count:			Int = 0
-	private var lapCount:		Int = 0
-	private var timeText:		String = TimeTemplateString.timeDefaultString.rawValue
-	private var lapTimeText:	String = ""
-	private var laps:			[String] = []
+	private var count:			Int			= 0
+	private var lapCount:		Int			= 0
+	private var timeText:		String		= TimeTemplateString.timeDefaultString.rawValue
+	private var lapTimeText:	String		= ""
+	private var laps:			[String]	= []
 	
-	private(set) var isCounting: Bool = false
+	private(set) var state: TimerState = .default
 	
 	private var shortTimeIndex: Int? {
 		get {
@@ -77,14 +83,15 @@ final class StopWatchModel: NSObject {
 
 	//MARK: - StopWatch Control
 	func start(){
-		isCounting = true
+		state = .valid
 	}
 	
 	func stop(){
-		isCounting = false
+		state = .invalid
 	}
 	
 	func update(){
+		//ここ一緒にできる？
 		count += 1
 		let milliSecond = count % 100
 		let seconds = (count - milliSecond) / 100 % 60
@@ -109,6 +116,7 @@ final class StopWatchModel: NSObject {
 		count = 0
 		lapCount = 0
 		
+		state = .default
 		timeText = TimeTemplateString.timeDefaultString.rawValue
 		
 		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
@@ -127,11 +135,10 @@ extension StopWatchModel: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
-		
-		cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 18, weight: .regular)
 		cell.detailTextLabel?.text = laps[indexPath.row]
 		cell.selectionStyle = .none
 		
+		//ここも綺麗にしたい
 		switch indexPath.row {
 		case shortTimeIndex:
 			cell.detailTextLabel?.textColor = .green

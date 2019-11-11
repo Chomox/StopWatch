@@ -27,7 +27,10 @@ class StopWatchViewController: UIViewController {
 	
 	//MARK: - Actions
 	@IBAction private func startButtonTapped(){
+		 
 		if timer == nil {
+			//TODO: timeずれ問題絵を解決する
+			
 			timer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
 			RunLoop.current.add(timer!, forMode: .common)
 			stopWatchModel.start()
@@ -37,23 +40,25 @@ class StopWatchViewController: UIViewController {
 			timer = nil
 			stopWatchModel.stop()
 		}
-		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
+		_switchButtonsAppearance(state: stopWatchModel.state)
 	}
 	
 	@IBAction private func addButtonTapped(){
-		switch stopWatchModel.isCounting {
-		case true:
+		switch stopWatchModel.state {
+		case .valid:
 			self.stopWatchModel.add()
 			stopWatchView?.lapsTableView.reloadData()
-		case false:
+		case .invalid:
 			
-			//TODO: - ResetしたらLapにTextを変更して、Buttonを無効化する
-//			stopWatchView?.lapButton.titleLabel?.text = ButtonState.lap.rawValue
+			
 
-			stopWatchModel.reset()
-			stopWatchView?.lapsTableView.reloadData()
+			self.stopWatchModel.reset()
+			self.stopWatchView?.lapsTableView.reloadData()
 			
-			stopWatchView?.timeLabel.text = stopWatchModel.time
+			self.stopWatchView?.timeLabel.text = stopWatchModel.time
+			self._switchButtonsAppearance(state: stopWatchModel.state)
+			
+		default: break
 		}
 	}
 	
@@ -75,16 +80,32 @@ class StopWatchViewController: UIViewController {
 		
 		stopWatchView?.timeLabel.text = stopWatchModel.time
 		
-		_switchButtonsAppearance(timerValid: stopWatchModel.isCounting)
+		_switchButtonsAppearance(state: stopWatchModel.state)
 	}
 	
 	
 	//MARK: - Appearance
-	private func _switchButtonsAppearance(timerValid: Bool){
-		stopWatchView?.startButton.setTitle( timerValid ? ButtonState.stop.rawValue : ButtonState.start.rawValue, for: .normal)
+	private func _switchButtonsAppearance(state: StopWatchModel.TimerState ){
+		
 		//FIXME: そのままの色にしない
-		stopWatchView?.startButton.backgroundColor = timerValid ? .red : .green
-		stopWatchView?.lapButton.setTitle( timerValid ? ButtonState.lap.rawValue : ButtonState.reset.rawValue, for: .normal)
+		switch state {
+		case .valid:
+			stopWatchView?.startButton.setTitle( ButtonState.stop.rawValue, for: .normal)
+			stopWatchView?.startButton.backgroundColor = .red
+			stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
+			stopWatchView?.lapButton.alpha = 1
+			stopWatchView?.lapButton.isEnabled = true
+		case .invalid:
+			stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
+			stopWatchView?.startButton.backgroundColor = .green
+			stopWatchView?.lapButton.setTitle( ButtonState.reset.rawValue, for: .normal)
+		case .default:
+			stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
+			stopWatchView?.startButton.backgroundColor = .green
+			stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
+			stopWatchView?.lapButton.alpha = 0.5
+			stopWatchView?.lapButton.isEnabled = false
+		}
 	}
 	
 	
