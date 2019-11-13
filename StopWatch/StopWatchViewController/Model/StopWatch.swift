@@ -35,7 +35,7 @@ final class StopWatch: NSObject {
 	private var lapCount:		Int			= 0
 	private var timeText:		String		= TimeTemplateString.timeDefaultString.rawValue
 	private var lapTimeText:	String		= ""
-	private var laps:			[String]	= []
+	private(set) var laps:		[String]	= []
 	
 	private(set) var state: State = .default
 	
@@ -57,6 +57,12 @@ final class StopWatch: NSObject {
 		}
 	}
 	
+	var lapTime: String {
+		get {
+			return lapTimeText
+		}
+	}
+	
 	
 	//MARK: - Life Cycle
 	override init(){
@@ -64,7 +70,7 @@ final class StopWatch: NSObject {
 		
 		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
 		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
-		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
+		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [TimeTemplateString.timeDefaultString.rawValue]
 		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
@@ -81,6 +87,10 @@ final class StopWatch: NSObject {
 	//MARK: - StopWatch Control
 	func start(){
 		state = .valid
+		
+		if laps.isEmpty {
+			laps.insert(TimeTemplateString.timeDefaultString.rawValue, at: 0)
+		}
 	}
 	
 	func stop(){
@@ -127,6 +137,7 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		laps.count
+		
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

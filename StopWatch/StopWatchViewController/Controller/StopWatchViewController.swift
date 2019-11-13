@@ -105,5 +105,6 @@ class StopWatchViewController: UIViewController {
 	@objc private func updateStopWatch(){
 		stopWatch.update()
 		self.stopWatchView?.timeLabel.text = stopWatch.time
+		self.stopWatchView?.lapsTableView.cellForRow(at: .init(row: stopWatch.laps.endIndex - 1, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
 	}
 }
