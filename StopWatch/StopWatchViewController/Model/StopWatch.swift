@@ -8,11 +8,10 @@
 
 import UIKit
 
-final class StopWatchModel: NSObject {
-	
+final class StopWatch: NSObject {
 	
 	//MARK: - Constants
-	public enum TimerState: String {
+	public enum State: String {
 		case valid
 		case invalid
 		case `default`
@@ -38,7 +37,7 @@ final class StopWatchModel: NSObject {
 	private var lapTimeText:	String		= ""
 	private var laps:			[String]	= []
 	
-	private(set) var state: TimerState = .default
+	private(set) var state: State = .default
 	
 	private var shortTimeIndex: Int? {
 		get {
@@ -59,7 +58,7 @@ final class StopWatchModel: NSObject {
 	}
 	
 	
-	//MARK: - Initialize
+	//MARK: - Life Cycle
 	override init(){
 		super.init()
 		
@@ -71,8 +70,6 @@ final class StopWatchModel: NSObject {
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
 	}
 	
-	
-	//MARK: - Save
 	@objc private func save(){
 		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
 		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
@@ -91,7 +88,7 @@ final class StopWatchModel: NSObject {
 	}
 	
 	func update(){
-		//ここ一緒にできる？
+		//FIXME: CleanUp
 		count += 1
 		let milliSecond = count % 100
 		let seconds = (count - milliSecond) / 100 % 60
@@ -126,7 +123,7 @@ final class StopWatchModel: NSObject {
 	}
 }
 
-extension StopWatchModel: UITableViewDataSource, UITableViewDelegate {
+extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		laps.count
@@ -138,7 +135,7 @@ extension StopWatchModel: UITableViewDataSource, UITableViewDelegate {
 		cell.detailTextLabel?.text = laps[indexPath.row]
 		cell.selectionStyle = .none
 		
-		//ここも綺麗にしたい
+		//FIXME: CleanUp
 		switch indexPath.row {
 		case shortTimeIndex:
 			cell.detailTextLabel?.textColor = .green
@@ -154,6 +151,6 @@ extension StopWatchModel: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 	}
 }
