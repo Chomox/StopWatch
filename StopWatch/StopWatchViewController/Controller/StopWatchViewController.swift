@@ -28,9 +28,11 @@ class StopWatchViewController: UIViewController {
 	//MARK: - Actions
 	@IBAction private func startButtonTapped(){
 		if timer == nil {
-			timer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateStopWatch), userInfo: nil, repeats: true)
+			timer = .scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 			RunLoop.current.add(timer!, forMode: .common)
 			stopWatch.start()
+			
+			self.stopWatchView?.lapsTableView.reloadData()
 		} else {
 			timer?.invalidate()
 			timer = nil
@@ -102,9 +104,9 @@ class StopWatchViewController: UIViewController {
 	
 	
 	//MARK: - TimerHandler
-	@objc private func updateStopWatch(){
+	@objc private func update(){
 		stopWatch.update()
 		self.stopWatchView?.timeLabel.text = stopWatch.time
-		self.stopWatchView?.lapsTableView.cellForRow(at: .init(row: stopWatch.laps.endIndex - 1, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
+		self.stopWatchView?.lapsTableView.cellForRow(at: .init(row: 0, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
 	}
 }
