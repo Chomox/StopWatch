@@ -26,6 +26,7 @@ class StopWatchView: UIView {
 	@IBOutlet weak var timeLabel: UILabel! {
 		willSet {
 			newValue.font = .monospacedDigitSystemFont(ofSize: Size.font, weight: .regular)
+			newValue.textColor = .white
 		}
 	}
 	

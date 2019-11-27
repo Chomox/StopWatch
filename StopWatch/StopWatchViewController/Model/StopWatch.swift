@@ -141,8 +141,8 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
-		cell.detailTextLabel?.textColor = .black
-		cell.textLabel?.textColor = .black
+		cell.detailTextLabel?.textColor = .white
+		cell.textLabel?.textColor = .white
 		cell.selectionStyle = .none
 		
 		if indexPath.row != 0 {
@@ -152,11 +152,8 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 		}
 		
 		if self.laps.count > 1 {
-			
 			if let minIndex = shortTimeIndex, let maxIndex = longTimeIndex {
-			
 				switch indexPath.row {
-				//１個ずれてる？
 				case minIndex + 1:
 					cell.detailTextLabel?.textColor = .green
 					cell.textLabel?.textColor = .green
@@ -167,7 +164,6 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 					
 				}
 			}
-			
 		}
 		
 		return cell
