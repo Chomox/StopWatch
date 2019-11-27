@@ -43,7 +43,11 @@ class StopWatchView: UIView {
 		}
 	}
 	
-	@IBOutlet weak var lapsTableView: UITableView!
+	@IBOutlet weak var lapsTableView: UITableView! {
+		willSet {
+			newValue.delegate = self
+		}
+	}
 	
 
 	//MARK: - Life Cycle
@@ -62,4 +66,12 @@ class StopWatchView: UIView {
 		view?.frame = self.bounds
 		self.addSubview(view ?? UIView())
     }
+	
+	
+}
+
+extension StopWatchView: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+	}
 }

@@ -31,11 +31,12 @@ final class StopWatch: NSObject {
 	
 	
 	//MARK: - Properties
-	private var count:			Int			= 0
-	private var lapCount:		Int			= 0
-	private var timeText:		String		= TimeTemplateString.timeDefaultString.rawValue
-	private var lapTimeText:	String		= ""
-	private(set) var laps:		[String]	= []
+	private var count:				Int			= 0
+	private var lapCount:			Int			= 0
+	private var countingCellValid:	Bool 		= false
+	private var timeText:			String		= TimeTemplateString.timeDefaultString.rawValue
+	private var lapTimeText:		String		= ""
+	private(set) var laps:			[String]	= []
 	
 	private(set) var state: State = .default
 	
@@ -70,27 +71,24 @@ final class StopWatch: NSObject {
 		
 		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
 		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
-		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [TimeTemplateString.timeDefaultString.rawValue]
+		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
 		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
 	}
 	
 	@objc private func save(){
-		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
-		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
-		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
-		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
+//		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
+//		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
+//		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
+//		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
 	}
 	
 
 	//MARK: - StopWatch Control
 	func start(){
 		state = .valid
-		
-		if laps.isEmpty {
-			laps.insert(TimeTemplateString.timeDefaultString.rawValue, at: 0)
-		}
+		countingCellValid = true
 	}
 	
 	func stop(){
@@ -122,46 +120,56 @@ final class StopWatch: NSObject {
 	
 		count = 0
 		lapCount = 0
+		countingCellValid = false
 		
 		state = .default
 		timeText = TimeTemplateString.timeDefaultString.rawValue
 		
-		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
-		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
-		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
-		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
+//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
+//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
+//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
+//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
 	}
 }
 
 extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		laps.count
-		
+		laps.count + (countingCellValid ? 1 : 0)
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
-		cell.detailTextLabel?.text = laps[indexPath.row]
+		cell.detailTextLabel?.textColor = .black
+		cell.textLabel?.textColor = .black
 		cell.selectionStyle = .none
 		
-		//FIXME: CleanUp
-		switch indexPath.row {
-		case shortTimeIndex:
-			cell.detailTextLabel?.textColor = .green
-			cell.textLabel?.textColor = .green
-		case longTimeIndex:
-			cell.detailTextLabel?.textColor = .red
-			cell.textLabel?.textColor = .red
-		default:
-			cell.detailTextLabel?.textColor = .black
-			cell.textLabel?.textColor = .black
+		if indexPath.row != 0 {
+			cell.detailTextLabel?.text = laps[indexPath.row - 1]
+		} else {
+			cell.detailTextLabel?.text = lapTime
 		}
+		
+		if self.laps.count > 1 {
+			
+			if let minIndex = shortTimeIndex, let maxIndex = longTimeIndex {
+			
+				switch indexPath.row {
+				//１個ずれてる？
+				case minIndex + 1:
+					cell.detailTextLabel?.textColor = .green
+					cell.textLabel?.textColor = .green
+				case maxIndex + 1:
+					cell.detailTextLabel?.textColor = .red
+					cell.textLabel?.textColor = .red
+				default: break
+					
+				}
+			}
+			
+		}
+		
 		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 	}
 }
