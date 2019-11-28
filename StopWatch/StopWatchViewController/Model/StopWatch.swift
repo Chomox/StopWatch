@@ -78,10 +78,10 @@ final class StopWatch: NSObject {
 	}
 	
 	@objc private func save(){
-//		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
-//		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
-//		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
-//		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
+		UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
+		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
+		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
+		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
 	}
 	
 
@@ -125,10 +125,10 @@ final class StopWatch: NSObject {
 		state = .default
 		timeText = TimeTemplateString.timeDefaultString.rawValue
 		
-//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
-//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
-//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
-//		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
+		UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
 	}
 }
 
