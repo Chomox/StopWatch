@@ -67,8 +67,6 @@ class StopWatchView: UIView {
 		view?.frame = self.bounds
 		self.addSubview(view ?? UIView())
     }
-	
-	
 }
 
 extension StopWatchView: UITableViewDelegate {

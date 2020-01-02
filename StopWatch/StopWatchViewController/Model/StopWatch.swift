@@ -22,6 +22,7 @@ final class StopWatch: NSObject {
 		case lapTimeText = "LapTime_String"
 		case laps = "Laps"
 		case count = "Count"
+		case lapCount = "Lap_Count"
 	}
 	
 	private enum TimeTemplateString: String {
@@ -33,35 +34,26 @@ final class StopWatch: NSObject {
 	//MARK: - Properties
 	private var count:				Int			= 0
 	private var lapCount:			Int			= 0
-	private var countingCellValid:	Bool 		= false
 	private var timeText:			String		= TimeTemplateString.timeDefaultString.rawValue
 	private var lapTimeText:		String		= ""
-	private(set) var laps:			[String]	= []
 	
-	private(set) var state: State = .default
+	private(set) var laps:			[String]	= []
+	private(set) var state: 		State 		= .default
 	
 	private var shortTimeIndex: Int? {
-		get {
-			laps.firstIndex(of: self.laps.min() ?? "")
-		}
+		laps.firstIndex(of: self.laps.min() ?? "")
 	}
 	
 	private var longTimeIndex: Int? {
-		get {
-			laps.firstIndex(of: self.laps.max() ?? "")
-		}
+		laps.firstIndex(of: self.laps.max() ?? "")
 	}
 	
 	var time: String {
-		get {
-			return timeText
-		}
+		timeText
 	}
 	
 	var lapTime: String {
-		get {
-			return lapTimeText
-		}
+		lapTimeText
 	}
 	
 	
@@ -69,10 +61,14 @@ final class StopWatch: NSObject {
 	override init(){
 		super.init()
 		
-		self.timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
-		self.lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
-		self.laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
-		self.count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
+		timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
+		lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
+		laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
+		count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
+		lapCount = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount.rawValue)
+		
+		//これでいいような気がするけどlapしてない時の保存がどうなのか気になる(やっぱそうだよね)
+		state = count > 0 ? .invalid : .default
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
 	}
@@ -82,13 +78,13 @@ final class StopWatch: NSObject {
 		UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
 		UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
 		UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
+		UserDefaults.standard.set(lapCount, forKey: PropertySaveKeys.lapCount.rawValue)
 	}
 	
 
 	//MARK: - StopWatch Control
 	func start(){
 		state = .valid
-		countingCellValid = true
 	}
 	
 	func stop(){
@@ -120,7 +116,6 @@ final class StopWatch: NSObject {
 	
 		count = 0
 		lapCount = 0
-		countingCellValid = false
 		
 		state = .default
 		timeText = TimeTemplateString.timeDefaultString.rawValue
@@ -135,12 +130,16 @@ final class StopWatch: NSObject {
 extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		laps.count + (countingCellValid ? 1 : 0)
+		switch state {
+		case .default: return 0
+		default: return laps.count + 1
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
-		cell.textLabel?.text = "Lap \(laps.count - indexPath.row)"
+		cell.textLabel?.text = "Lap \(laps.count - indexPath.row + 1)"
 		cell.detailTextLabel?.textColor = .white
 		cell.textLabel?.textColor = .white
 		cell.selectionStyle = .none
@@ -151,7 +150,7 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 			cell.detailTextLabel?.text = lapTime
 		}
 		
-		if self.laps.count > 1 {
+		if laps.count > 1 {
 			if let minIndex = shortTimeIndex, let maxIndex = longTimeIndex {
 				switch indexPath.row {
 				case minIndex + 1:
@@ -161,11 +160,9 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 					cell.detailTextLabel?.textColor = .red
 					cell.textLabel?.textColor = .red
 				default: break
-					
 				}
 			}
 		}
-		
 		return cell
 	}
 }

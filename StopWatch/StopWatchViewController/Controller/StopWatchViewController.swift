@@ -39,21 +39,19 @@ class StopWatchViewController: UIViewController {
 			stopWatch.stop()
 		}
 		
-		_switchButtonsAppearance(state: stopWatch.state)
+		switchButtonsAppearance(state: stopWatch.state)
 	}
 	
 	@IBAction private func addButtonTapped(){
 		switch stopWatch.state {
 		case .valid:
-			self.stopWatch.add()
+			stopWatch.add()
 			stopWatchView?.lapsTableView.reloadData()
 		case .invalid:
-			self.stopWatch.reset()
-			self.stopWatchView?.lapsTableView.reloadData()
-			
-			self.stopWatchView?.timeLabel.text = stopWatch.time
-			self._switchButtonsAppearance(state: stopWatch.state)
-			
+			stopWatch.reset()
+			stopWatchView?.lapsTableView.reloadData()
+			stopWatchView?.timeLabel.text = stopWatch.time
+			switchButtonsAppearance(state: stopWatch.state)
 		default: break
 		}
 	}
@@ -74,14 +72,12 @@ class StopWatchViewController: UIViewController {
 		stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
 		stopWatchView?.timeLabel.text = stopWatch.time
 		
-		_switchButtonsAppearance(state: stopWatch.state)
+		switchButtonsAppearance(state: stopWatch.state)
 	}
 	
 	
 	//MARK: - Appearance
-	private func _switchButtonsAppearance(state: StopWatch.State ){
-		
-		//FIXME: そのままの色にしない
+	private func switchButtonsAppearance(state: StopWatch.State ){
 		switch state {
 		case .valid:
 			stopWatchView?.startButton.setTitle( ButtonState.stop.rawValue, for: .normal)
@@ -106,7 +102,7 @@ class StopWatchViewController: UIViewController {
 	//MARK: - TimerHandler
 	@objc private func update(){
 		stopWatch.update()
-		self.stopWatchView?.timeLabel.text = stopWatch.time
-		self.stopWatchView?.lapsTableView.cellForRow(at: .init(row: 0, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
+		stopWatchView?.timeLabel.text = stopWatch.time
+		stopWatchView?.lapsTableView.cellForRow(at: .init(row: 0, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
 	}
 }
