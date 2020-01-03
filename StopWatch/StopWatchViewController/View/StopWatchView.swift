@@ -12,7 +12,8 @@ class StopWatchView: UIView {
 	
 	//MARK: - Constants
 	private enum Size {
-		static let font: CGFloat = 72.0
+		static let font:		CGFloat = 84.0
+		static let cellHeight:	CGFloat = 43.0
 	}
 	
 	
@@ -25,7 +26,7 @@ class StopWatchView: UIView {
 	
 	@IBOutlet weak var timeLabel: UILabel! {
 		willSet {
-			newValue.font = .monospacedDigitSystemFont(ofSize: Size.font, weight: .regular)
+			newValue.font = .monospacedDigitSystemFont(ofSize: Size.font, weight: .thin)
 			newValue.textColor = .white
 		}
 	}
@@ -72,5 +73,9 @@ class StopWatchView: UIView {
 extension StopWatchView: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		Size.cellHeight
 	}
 }
