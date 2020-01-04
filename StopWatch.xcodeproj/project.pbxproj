@@ -17,6 +17,7 @@
 		BFB3D40E2354F62C00DD716C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB3D40D2354F62C00DD716C /* Assets.xcassets */; };
 		BFB3D4112354F62C00DD716C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB3D40F2354F62C00DD716C /* LaunchScreen.storyboard */; };
 		BFB3D41A2354F76B00DD716C /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3D4192354F76B00DD716C /* StopWatchView.swift */; };
+		BFC448DA23BF847C0030547B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC448D923BF847C0030547B /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		BFB3D4102354F62C00DD716C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFB3D4122354F62C00DD716C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB3D4192354F76B00DD716C /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+		BFC448D923BF847C0030547B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				BFB3D40F2354F62C00DD716C /* LaunchScreen.storyboard */,
 				BFB3D4122354F62C00DD716C /* Info.plist */,
 				BF7894582361038B00844C66 /* NotificationExtension.swift */,
+				BFC448D923BF847C0030547B /* Color.swift */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			files = (
 				BF718376235668F600030550 /* StopWatch.swift in Sources */,
 				BFB3D4092354F62B00DD716C /* StopWatchViewController.swift in Sources */,
+				BFC448DA23BF847C0030547B /* Color.swift in Sources */,
 				BF7894592361038B00844C66 /* NotificationExtension.swift in Sources */,
 				BFB3D4052354F62B00DD716C /* AppDelegate.swift in Sources */,
 				BFB3D41A2354F76B00DD716C /* StopWatchView.swift in Sources */,
