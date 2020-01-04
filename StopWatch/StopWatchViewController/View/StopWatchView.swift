@@ -34,14 +34,13 @@ class StopWatchView: UIView {
 	@IBOutlet weak var startButton: UIButton! {
 		willSet {
 			newValue.layer.cornerRadius = newValue.frame.height / 2
-			newValue.backgroundColor = .green
 		}
 	}
 	
 	@IBOutlet weak var lapButton: UIButton! {
 		willSet {
 			newValue.layer.cornerRadius = newValue.frame.height / 2
-			newValue.backgroundColor = .gray
+			newValue.backgroundColor = .lapButtonBackground 
 		}
 	}
 	

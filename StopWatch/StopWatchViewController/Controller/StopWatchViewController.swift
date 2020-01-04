@@ -66,8 +66,11 @@ class StopWatchViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
+		
 		stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = stopWatch
+		stopWatchView?.lapsTableView.backgroundColor = .background
 		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 		stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
 		stopWatchView?.timeLabel.text = stopWatch.time
@@ -80,21 +83,26 @@ class StopWatchViewController: UIViewController {
 	private func switchButtonsAppearance(state: StopWatch.State ){
 		switch state {
 		case .valid:
+			
 			stopWatchView?.startButton.setTitle( ButtonState.stop.rawValue, for: .normal)
-			stopWatchView?.startButton.backgroundColor = .red
+			stopWatchView?.startButton.backgroundColor = .stopButtonBackground
+			stopWatchView?.startButton.tintColor = .stopButtonText
 			stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
 			stopWatchView?.lapButton.alpha = 1
-			stopWatchView?.lapButton.isEnabled = true
+//			stopWatchView?.lapButton.isEnabled = true
 		case .invalid:
 			stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
-			stopWatchView?.startButton.backgroundColor = .green
+			stopWatchView?.startButton.backgroundColor = .startButtonBackground
+			stopWatchView?.startButton.tintColor = .startButtonText
 			stopWatchView?.lapButton.setTitle( ButtonState.reset.rawValue, for: .normal)
 		case .default:
 			stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
-			stopWatchView?.startButton.backgroundColor = .green
+			stopWatchView?.startButton.backgroundColor = .startButtonBackground
+			stopWatchView?.startButton.tintColor = .startButtonText
 			stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
-			stopWatchView?.lapButton.alpha = 0.5
-			stopWatchView?.lapButton.isEnabled = false
+			stopWatchView?.lapButton.tintColor = .white
+			stopWatchView?.lapButton.alpha = 0.6
+//			stopWatchView?.lapButton.isEnabled = false
 		}
 	}
 	

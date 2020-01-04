@@ -139,6 +139,7 @@ extension StopWatch: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
+		cell.backgroundColor = .background
 		cell.textLabel?.text = "Lap \(laps.count - indexPath.row + 1)"
 		cell.detailTextLabel?.textColor = .white
 		cell.textLabel?.textColor = .white
