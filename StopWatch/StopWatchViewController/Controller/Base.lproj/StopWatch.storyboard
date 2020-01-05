@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-1434" y="-39"/>
         </scene>
-        <!--StopWatch-->
+        <!--Stopwatch-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StopWatchViewController" customModule="StopWatch" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,11 +34,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="StopWatch" id="I7K-DV-bUj"/>
+                    <tabBarItem key="tabBarItem" title="Stopwatch" image="stopwatch.fill" catalog="system" id="I7K-DV-bUj">
+                        <color key="badgeColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-429" y="-40"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="stopwatch.fill" catalog="system" width="60" height="64"/>
+    </resources>
 </document>

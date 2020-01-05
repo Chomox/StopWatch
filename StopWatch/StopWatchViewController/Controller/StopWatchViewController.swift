@@ -67,6 +67,7 @@ class StopWatchViewController: UIViewController {
 		super.viewDidLoad()
 		
 		self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
+		self.tabBarController?.tabBar.tintColor = .tabBarTintColor
 		
 		stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = stopWatch
