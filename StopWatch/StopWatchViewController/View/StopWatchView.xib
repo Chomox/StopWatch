@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kza-FL-Faa">
-                    <rect key="frame" x="0.0" y="514" width="414" height="348"/>
+                    <rect key="frame" x="0.0" y="508" width="414" height="354"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-w0-EXw">
@@ -33,20 +33,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lun-4H-Sms">
-                    <rect key="frame" x="16" y="414" width="90" height="90"/>
+                    <rect key="frame" x="16" y="414" width="84" height="84"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="1ve-29-4eF"/>
-                        <constraint firstAttribute="width" constant="90" id="WIt-NT-FJG"/>
+                        <constraint firstAttribute="height" constant="84" id="1ve-29-4eF"/>
+                        <constraint firstAttribute="width" constant="84" id="WIt-NT-FJG"/>
                         <constraint firstAttribute="width" secondItem="lun-4H-Sms" secondAttribute="height" multiplier="1:1" id="clR-cF-uX8"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-ky-RUt">
-                    <rect key="frame" x="308" y="414" width="90" height="90"/>
+                    <rect key="frame" x="314" y="414" width="84" height="84"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="M0b-yx-9gc"/>
+                        <constraint firstAttribute="height" constant="84" id="M0b-yx-9gc"/>
                         <constraint firstAttribute="width" secondItem="dRX-ky-RUt" secondAttribute="height" multiplier="1:1" id="e5x-0H-8Wt"/>
-                        <constraint firstAttribute="width" constant="90" id="ekk-4Z-OgF"/>
+                        <constraint firstAttribute="width" constant="84" id="ekk-4Z-OgF"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
