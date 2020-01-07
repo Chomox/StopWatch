@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kza-FL-Faa">
-                    <rect key="frame" x="0.0" y="508" width="414" height="354"/>
+                    <rect key="frame" x="0.0" y="514" width="414" height="299"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-w0-EXw">
@@ -50,20 +50,26 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="85C-5n-5t9">
+                    <rect key="frame" x="195.5" y="437.5" width="23" height="37"/>
+                </pageControl>
             </subviews>
             <constraints>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5IB-Vv-omw"/>
                 <constraint firstItem="lun-4H-Sms" firstAttribute="top" secondItem="hCn-w0-EXw" secondAttribute="bottom" constant="50.5" id="5s7-Cn-UbG"/>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="BYH-dV-el0"/>
+                <constraint firstItem="85C-5n-5t9" firstAttribute="centerY" secondItem="lun-4H-Sms" secondAttribute="centerY" id="EiT-gE-TcR"/>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.245" id="VFv-XA-yJr"/>
                 <constraint firstItem="dRX-ky-RUt" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="top" id="XGO-dR-OTy"/>
+                <constraint firstItem="dRX-ky-RUt" firstAttribute="centerY" secondItem="lun-4H-Sms" secondAttribute="centerY" id="XxH-Dx-qAY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kza-FL-Faa" secondAttribute="bottom" constant="49" id="ZSj-Zn-toL"/>
                 <constraint firstItem="kza-FL-Faa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bMN-No-obS"/>
                 <constraint firstItem="kza-FL-Faa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="egI-Cy-Azj"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kza-FL-Faa" secondAttribute="bottom" id="ibq-eY-ef9"/>
+                <constraint firstItem="85C-5n-5t9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hAv-Vk-alI"/>
                 <constraint firstItem="lun-4H-Sms" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lib-B3-ECB"/>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="oyv-IE-hc0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dRX-ky-RUt" secondAttribute="trailing" constant="16" id="rHU-9l-FkX"/>
-                <constraint firstItem="kza-FL-Faa" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="bottom" constant="10" id="sIL-ds-Xz7"/>
+                <constraint firstItem="kza-FL-Faa" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="bottom" constant="16" id="sIL-ds-Xz7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-213.04347826086959" y="207.58928571428569"/>
