@@ -12,10 +12,10 @@ class StopWatchViewController: UIViewController {
 	
 	//MARK: - Constant
 	private enum ButtonState: String {
-		case start = "Start"
-		case stop = "Stop"
-		case lap = "Lap"
-		case reset = "Reset"
+        case start = "Start"
+        case stop = "Stop"
+        case lap = "Lap"
+        case reset = "Reset"
 	}
 
 	
@@ -69,14 +69,14 @@ class StopWatchViewController: UIViewController {
 		self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
 		self.tabBarController?.tabBar.tintColor = .tabBarTintColor
 		
-		stopWatchView = self.view as? StopWatchView
+        stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = stopWatch
-		stopWatchView?.lapsTableView.backgroundColor = .background
-		stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-		stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
-		stopWatchView?.timeLabel.text = stopWatch.time
-		
-		switchButtonsAppearance(state: stopWatch.state)
+        stopWatchView?.lapsTableView.backgroundColor = .background
+        stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        stopWatchView?.timeLabel.text = stopWatch.time
+
+        switchButtonsAppearance(state: stopWatch.state)
 	}
 	
 	

@@ -32,13 +32,13 @@ final class StopWatch: NSObject {
 	
 	
 	//MARK: - Properties
-	private var count:				Int			= 0
-	private var lapCount:			Int			= 0
-	private var timeText:			String		= TimeTemplateString.timeDefaultString.rawValue
-	private var lapTimeText:		String		= ""
+	private var count:          Int     = 0
+	private var lapCount:       Int     = 0
+	private var timeText:       String  = TimeTemplateString.timeDefaultString.rawValue
+	private var lapTimeText:    String  = ""
 	
-	private(set) var laps:			[String]	= []
-	private(set) var state: 		State 		= .default
+	private(set) var laps:  [String]    = []
+	private(set) var state: State       = .default
 	
 	private var shortTimeIndex: Int? {
 		laps.firstIndex(of: self.laps.min() ?? "")
@@ -67,7 +67,6 @@ final class StopWatch: NSObject {
 		count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
 		lapCount = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount.rawValue)
 		
-		//これでいいような気がするけどlapしてない時の保存がどうなのか気になる(やっぱそうだよね)
 		state = count > 0 ? .invalid : .default
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)

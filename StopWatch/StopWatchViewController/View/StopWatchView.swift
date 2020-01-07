@@ -10,48 +10,46 @@ import UIKit
 
 class StopWatchView: UIView {
 	
-	//MARK: - Constants
-	private enum Size {
-		static let font:		CGFloat = 84.0
-		static let cellHeight:	CGFloat = 43.0
-	}
-	
-	
-	//MARK: - Properties
-	private var className: String {
-        get {
-            return String(describing: type(of: self))
+    //MARK: - Constants
+    private enum Size {
+        static let font:        CGFloat = 84.0
+        static let cellHeight:  CGFloat = 43.0
+    }
+
+
+    //MARK: - Properties
+    private var className: String {
+        String(describing: type(of: self))
+    }
+
+    @IBOutlet weak var timeLabel: UILabel! {
+        willSet {
+            newValue.font = .monospacedDigitSystemFont(ofSize: Size.font, weight: .thin)
+            newValue.textColor = .white
+        }
+    }
+
+    @IBOutlet weak var startButton: UIButton! {
+        willSet {
+            newValue.layer.cornerRadius = newValue.frame.height / 2
+        }
+    }
+
+    @IBOutlet weak var lapButton: UIButton! {
+        willSet {
+            newValue.layer.cornerRadius = newValue.frame.height / 2
+            newValue.backgroundColor = .lapButtonBackground
+        }
+    }
+
+    @IBOutlet weak var lapsTableView: UITableView! {
+        willSet {
+            newValue.delegate = self
         }
     }
 	
-	@IBOutlet weak var timeLabel: UILabel! {
-		willSet {
-			newValue.font = .monospacedDigitSystemFont(ofSize: Size.font, weight: .thin)
-			newValue.textColor = .white
-		}
-	}
-	
-	@IBOutlet weak var startButton: UIButton! {
-		willSet {
-			newValue.layer.cornerRadius = newValue.frame.height / 2
-		}
-	}
-	
-	@IBOutlet weak var lapButton: UIButton! {
-		willSet {
-			newValue.layer.cornerRadius = newValue.frame.height / 2
-			newValue.backgroundColor = .lapButtonBackground 
-		}
-	}
-	
-	@IBOutlet weak var lapsTableView: UITableView! {
-		willSet {
-			newValue.delegate = self
-		}
-	}
-	
 
-	//MARK: - Life Cycle
+    //MARK: - Life Cycle
     override public init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
