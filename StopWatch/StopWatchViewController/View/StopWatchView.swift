@@ -61,9 +61,9 @@ class StopWatchView: UIView {
     }
 	
     private func initialize() {
-		let view = Bundle(for: type(of: self)).loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? UIView
-		view?.frame = self.bounds
-		self.addSubview(view ?? UIView())
+        let view = Bundle(for: type(of: self)).loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? UIView
+        view?.frame = self.bounds
+        self.addSubview(view ?? UIView())
     }
 }
 

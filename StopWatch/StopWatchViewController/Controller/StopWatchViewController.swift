@@ -11,12 +11,12 @@ import UIKit
 class StopWatchViewController: UIViewController {
 	
 	//MARK: - Constant
-	private enum ButtonState: String {
+    private enum ButtonState: String {
         case start = "Start"
         case stop = "Stop"
         case lap = "Lap"
         case reset = "Reset"
-	}
+    }
 
 	
 	//MARK: - Properties
@@ -58,16 +58,16 @@ class StopWatchViewController: UIViewController {
 	
 	
 	//MARK: - Life Cycle
-	override func loadView() {
-		super.loadView()
-		self.view = StopWatchView()
-	}
+    override func loadView() {
+        super.loadView()
+        self.view = StopWatchView()
+    }
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 		
-		self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
-		self.tabBarController?.tabBar.tintColor = .tabBarTintColor
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
+        self.tabBarController?.tabBar.tintColor = .tabBarTintColor
 		
         stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = stopWatch
@@ -77,14 +77,13 @@ class StopWatchViewController: UIViewController {
         stopWatchView?.timeLabel.text = stopWatch.time
 
         switchButtonsAppearance(state: stopWatch.state)
-	}
+    }
 	
 	
 	//MARK: - Appearance
 	private func switchButtonsAppearance(state: StopWatch.State ){
 		switch state {
 		case .valid:
-			
 			stopWatchView?.startButton.setTitle( ButtonState.stop.rawValue, for: .normal)
 			stopWatchView?.startButton.backgroundColor = .stopButtonBackground
 			stopWatchView?.startButton.tintColor = .stopButtonText
