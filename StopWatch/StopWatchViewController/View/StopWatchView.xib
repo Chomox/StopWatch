@@ -22,8 +22,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kza-FL-Faa">
-                    <rect key="frame" x="0.0" y="514" width="414" height="299"/>
-                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <rect key="frame" x="0.0" y="514" width="414" height="348"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-w0-EXw">
                     <rect key="frame" x="0.0" y="144" width="414" height="219.5"/>
@@ -62,7 +62,7 @@
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.245" id="VFv-XA-yJr"/>
                 <constraint firstItem="dRX-ky-RUt" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="top" id="XGO-dR-OTy"/>
                 <constraint firstItem="dRX-ky-RUt" firstAttribute="centerY" secondItem="lun-4H-Sms" secondAttribute="centerY" id="XxH-Dx-qAY"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kza-FL-Faa" secondAttribute="bottom" constant="49" id="ZSj-Zn-toL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kza-FL-Faa" secondAttribute="bottom" id="ZSj-Zn-toL"/>
                 <constraint firstItem="kza-FL-Faa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bMN-No-obS"/>
                 <constraint firstItem="kza-FL-Faa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="egI-Cy-Azj"/>
                 <constraint firstItem="85C-5n-5t9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hAv-Vk-alI"/>

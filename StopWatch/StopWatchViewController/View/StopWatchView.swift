@@ -12,8 +12,8 @@ class StopWatchView: UIView {
 	
     //MARK: - Constants
     private enum Size {
-        static let font:        CGFloat = 84.0
-        static let cellHeight:  CGFloat = 43.0
+        static let font:        CGFloat = 84
+        static let cellHeight:  CGFloat = 44
     }
 
 
