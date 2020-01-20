@@ -66,7 +66,6 @@ class StopWatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-        self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
         self.tabBarController?.tabBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         self.tabBarController?.tabBar.tintColor = .tabBarTintColor
 		
