@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopWatchView: UIView {
+final class StopWatchView: UIView {
 	
     //MARK: - Constants
     private enum Size {

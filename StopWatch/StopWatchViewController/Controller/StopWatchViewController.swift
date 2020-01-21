@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopWatchViewController: UIViewController {
+final class StopWatchViewController: UIViewController {
 	
     //MARK: - Constant
     private enum ButtonState: String {
