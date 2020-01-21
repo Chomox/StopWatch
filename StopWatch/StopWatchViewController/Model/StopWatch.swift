@@ -126,7 +126,7 @@ final class StopWatch: NSObject {
     }
 }
 
-extension StopWatch: UITableViewDataSource, UITableViewDelegate {
+extension StopWatch: UITableViewDataSource {
 	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch state {
