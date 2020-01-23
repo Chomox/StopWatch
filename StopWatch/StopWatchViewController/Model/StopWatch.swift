@@ -40,11 +40,11 @@ final class StopWatch: NSObject {
 	private(set) var laps:  [String]    = []
 	private(set) var state: State       = .default
 	
-    private var shortTimeIndex: Int? {
+    public var shortTimeIndex: Int? {
         laps.firstIndex(of: self.laps.min() ?? "")
     }
 	
-    private var longTimeIndex: Int? {
+    public var longTimeIndex: Int? {
         laps.firstIndex(of: self.laps.max() ?? "")
     }
 	
@@ -126,43 +126,3 @@ final class StopWatch: NSObject {
     }
 }
 
-extension StopWatch: UITableViewDataSource {
-	
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch state {
-        case .default: return 0
-        default: return laps.count + 1
-        }
-    }
-	
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-        let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
-        cell.backgroundColor = .background
-        cell.textLabel?.text = "Lap \(laps.count - indexPath.row + 1)"
-        cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.textColor = .white
-        cell.selectionStyle = .none
-        
-        if indexPath.row != 0 {
-            cell.detailTextLabel?.text = laps[indexPath.row - 1]
-        } else {
-            cell.detailTextLabel?.text = lapTime
-        }
-		
-        if laps.count > 1 {
-            if let minIndex = shortTimeIndex, let maxIndex = longTimeIndex {
-                switch indexPath.row {
-                case minIndex + 1:
-                    cell.detailTextLabel?.textColor = .green
-                    cell.textLabel?.textColor = .green
-                case maxIndex + 1:
-                    cell.detailTextLabel?.textColor = .red
-                    cell.textLabel?.textColor = .red
-                default: break
-                }
-            }
-        }
-        return cell
-    }
-}
