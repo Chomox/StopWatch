@@ -12,7 +12,7 @@ final class StopWatchView: UIView {
 	
     //MARK: - Constants
     private enum Size {
-        static let font:        CGFloat = 84
+        static let font: CGFloat = 90
     }
 
 
