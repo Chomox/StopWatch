@@ -8,12 +8,11 @@
 
 import UIKit
 
-class StopWatchView: UIView {
+final class StopWatchView: UIView {
 	
     //MARK: - Constants
     private enum Size {
-        static let font:        CGFloat = 84.0
-        static let cellHeight:  CGFloat = 43.0
+        static let font: CGFloat = 90
     }
 
 
@@ -42,11 +41,7 @@ class StopWatchView: UIView {
         }
     }
 
-    @IBOutlet weak var lapsTableView: UITableView! {
-        willSet {
-            newValue.delegate = self
-        }
-    }
+    @IBOutlet weak var lapsTableView: UITableView!
 	
 
     //MARK: - Life Cycle
@@ -65,14 +60,4 @@ class StopWatchView: UIView {
         view?.frame = self.bounds
         self.addSubview(view ?? UIView())
     }
-}
-
-extension StopWatchView: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		Size.cellHeight
-	}
 }

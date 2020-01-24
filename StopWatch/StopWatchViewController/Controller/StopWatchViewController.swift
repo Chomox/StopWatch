@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopWatchViewController: UIViewController {
+final class StopWatchViewController: UIViewController {
 	
     //MARK: - Constant
     private enum ButtonState: String {
@@ -66,11 +66,13 @@ class StopWatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-        self.tabBarController?.tabBar.barTintColor = UIColor(red: 19/255, green: 19/255, blue: 19/255, alpha: 1)
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         self.tabBarController?.tabBar.tintColor = .tabBarTintColor
 		
         stopWatchView = self.view as? StopWatchView
-        stopWatchView?.lapsTableView.dataSource = stopWatch
+        stopWatchView?.lapsTableView.dataSource = self
+        stopWatchView?.lapsTableView.delegate = self
+        
         stopWatchView?.lapsTableView.backgroundColor = .background
         stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         stopWatchView?.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
@@ -89,7 +91,6 @@ class StopWatchViewController: UIViewController {
             stopWatchView?.startButton.tintColor = .stopButtonText
             stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
             stopWatchView?.lapButton.alpha = 1
-        //			stopWatchView?.lapButton.isEnabled = true
         case .invalid:
             stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
             stopWatchView?.startButton.backgroundColor = .startButtonBackground
@@ -102,7 +103,6 @@ class StopWatchViewController: UIViewController {
             stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
             stopWatchView?.lapButton.tintColor = .white
             stopWatchView?.lapButton.alpha = 0.6
-        //			stopWatchView?.lapButton.isEnabled = false
         }
     }
 
@@ -114,3 +114,56 @@ class StopWatchViewController: UIViewController {
         stopWatchView?.lapsTableView.cellForRow(at: .init(row: 0, section: 0))?.detailTextLabel?.text = stopWatch.lapTime
     }
 }
+
+//MARK: - UITableViewDataSource
+extension StopWatchViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch stopWatch.state {
+        case .default: return 0
+        default: return stopWatch.laps.count + 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
+        cell.backgroundColor = .background
+        cell.textLabel?.text = "Lap \(stopWatch.laps.count - indexPath.row + 1)"
+        cell.detailTextLabel?.textColor = .white
+        cell.textLabel?.textColor = .white
+        cell.selectionStyle = .none
+        
+        if indexPath.row != 0 {
+            cell.detailTextLabel?.text = stopWatch.laps[indexPath.row - 1]
+        } else {
+            cell.detailTextLabel?.text = stopWatch.lapTime
+        }
+        
+        if stopWatch.laps.count > 1 {
+            if let minIndex = stopWatch.shortTimeIndex, let maxIndex = stopWatch.longTimeIndex {
+                switch indexPath.row {
+                case minIndex + 1:
+                    cell.detailTextLabel?.textColor = .green
+                    cell.textLabel?.textColor = .green
+                case maxIndex + 1:
+                    cell.detailTextLabel?.textColor = .red
+                    cell.textLabel?.textColor = .red
+                default: break
+                }
+            }
+        }
+        return cell
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension StopWatchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        44.0
+    }
+}
+
