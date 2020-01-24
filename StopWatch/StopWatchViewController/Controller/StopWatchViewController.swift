@@ -71,6 +71,7 @@ final class StopWatchViewController: UIViewController {
 		
         stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = self
+        stopWatchView?.lapsTableView.delegate = self
         
         stopWatchView?.lapsTableView.backgroundColor = .background
         stopWatchView?.lapButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -126,7 +127,6 @@ extension StopWatchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1 , reuseIdentifier: "cell")
-
         cell.backgroundColor = .background
         cell.textLabel?.text = "Lap \(stopWatch.laps.count - indexPath.row + 1)"
         cell.detailTextLabel?.textColor = .white
@@ -153,6 +153,17 @@ extension StopWatchViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension StopWatchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        44.0
     }
 }
 

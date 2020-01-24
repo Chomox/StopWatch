@@ -13,7 +13,6 @@ final class StopWatchView: UIView {
     //MARK: - Constants
     private enum Size {
         static let font:        CGFloat = 84
-        static let cellHeight:  CGFloat = 44
     }
 
 
@@ -42,11 +41,7 @@ final class StopWatchView: UIView {
         }
     }
 
-    @IBOutlet weak var lapsTableView: UITableView! {
-        willSet {
-            newValue.delegate = self
-        }
-    }
+    @IBOutlet weak var lapsTableView: UITableView!
 	
 
     //MARK: - Life Cycle
@@ -65,14 +60,4 @@ final class StopWatchView: UIView {
         view?.frame = self.bounds
         self.addSubview(view ?? UIView())
     }
-}
-
-extension StopWatchView: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cell.detailTextLabel?.font = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		Size.cellHeight
-	}
 }
