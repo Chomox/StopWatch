@@ -26,9 +26,9 @@
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-w0-EXw">
-                    <rect key="frame" x="0.0" y="144" width="414" height="219.5"/>
+                    <rect key="frame" x="0.0" y="146.5" width="414" height="219.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="90"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -56,8 +56,8 @@
             </subviews>
             <constraints>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5IB-Vv-omw"/>
-                <constraint firstItem="lun-4H-Sms" firstAttribute="top" secondItem="hCn-w0-EXw" secondAttribute="bottom" constant="50.5" id="5s7-Cn-UbG"/>
-                <constraint firstItem="hCn-w0-EXw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="BYH-dV-el0"/>
+                <constraint firstItem="lun-4H-Sms" firstAttribute="top" secondItem="hCn-w0-EXw" secondAttribute="bottom" constant="48" id="5s7-Cn-UbG"/>
+                <constraint firstItem="hCn-w0-EXw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="102.5" id="BYH-dV-el0"/>
                 <constraint firstItem="85C-5n-5t9" firstAttribute="centerY" secondItem="lun-4H-Sms" secondAttribute="centerY" id="EiT-gE-TcR"/>
                 <constraint firstItem="hCn-w0-EXw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.245" id="VFv-XA-yJr"/>
                 <constraint firstItem="dRX-ky-RUt" firstAttribute="top" secondItem="lun-4H-Sms" secondAttribute="top" id="XGO-dR-OTy"/>
