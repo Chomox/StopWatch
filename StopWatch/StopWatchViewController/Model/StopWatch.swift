@@ -34,7 +34,7 @@ final class StopWatch: NSObject {
 	//MARK: - Properties
 	private var count:          Int     = 0
 	private var lapCount:       Int     = 0
-	private var timeText:       String  = TimeTemplateString.timeDefaultString.rawValue
+	private var timeText:       String  = ""
 	private var lapTimeText:    String  = ""
 	
 	private(set) var laps:  [String]    = []
@@ -61,7 +61,7 @@ final class StopWatch: NSObject {
     override init(){
         super.init()
         
-        timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? ""
+        timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? TimeTemplateString.timeDefaultString.rawValue
         lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
         laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
         count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
