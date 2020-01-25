@@ -53,27 +53,22 @@ final class StopWatch: NSObject {
     override init(){
         super.init()
         
-        timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText) ?? TimeTemplateString.timeDefaultString
-        lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText) ?? ""
-        laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps) as? [String] ?? [String]()
-        count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count)
-        lapCount = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount)
-        
-        state = count > 0 ? .invalid : .default
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.Save, object: nil)
-    }
-	
-    @objc private func save(){
-        UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText)
-        UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText)
-        UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps)
-        UserDefaults.standard.set(count, forKey: PropertySaveKeys.count)
-        UserDefaults.standard.set(lapCount, forKey: PropertySaveKeys.lapCount)
+        setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(save), name: UIApplication.willTerminateNotification, object: nil)
     }
 	
 
     //MARK: - StopWatch Control
+    private func setup(){
+        time        = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText) ?? TimeTemplateString.timeDefaultString
+        lapTime     = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText) ?? ""
+        laps        = UserDefaults.standard.array(forKey: PropertySaveKeys.laps) as? [String] ?? [String]()
+        count       = UserDefaults.standard.integer(forKey: PropertySaveKeys.count)
+        lapCount    = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount)
+
+        state = count > 0 ? .invalid : .default
+    }
+    
     func start(){
         state = .valid
     }
@@ -115,6 +110,15 @@ final class StopWatch: NSObject {
         UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText)
         UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps)
         UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count)
+        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapCount)
+    }
+    
+    @objc private func save(){
+        UserDefaults.standard.set(time,     forKey: PropertySaveKeys.timeText)
+        UserDefaults.standard.set(lapTime,  forKey: PropertySaveKeys.lapTimeText)
+        UserDefaults.standard.set(laps,     forKey: PropertySaveKeys.laps)
+        UserDefaults.standard.set(count,    forKey: PropertySaveKeys.count)
+        UserDefaults.standard.set(lapCount, forKey: PropertySaveKeys.lapCount)
     }
 }
 
