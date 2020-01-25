@@ -11,23 +11,23 @@ import UIKit
 final class StopWatch: NSObject {
 	
 	//MARK: - Constants
-	public enum State: String {
+	public enum State {
 		case valid
 		case invalid
 		case `default`
 	}
 	
-	private enum PropertySaveKeys: String {
-		case timeText = "Time_String"
-		case lapTimeText = "LapTime_String"
-		case laps = "Laps"
-		case count = "Count"
-		case lapCount = "Lap_Count"
+	private enum PropertySaveKeys {
+		static let timeText       = "Time_String"
+        static let lapTimeText    = "LapTime_String"
+        static let laps           = "Laps"
+        static let count          = "Count"
+        static let lapCount       = "Lap_Count"
 	}
 	
-	private enum TimeTemplateString: String {
-		case timeFormatString = "%02d:%02d.%02d"
-		case timeDefaultString = "00:00.00"
+	private enum TimeTemplateString {
+        static let timeFormatString   = "%02d:%02d.%02d"
+        static let timeDefaultString  = "00:00.00"
 	}
 	
 	
@@ -61,11 +61,11 @@ final class StopWatch: NSObject {
     override init(){
         super.init()
         
-        timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText.rawValue) ?? TimeTemplateString.timeDefaultString.rawValue
-        lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText.rawValue) ?? ""
-        laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps.rawValue) as? [String] ?? [String]()
-        count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count.rawValue)
-        lapCount = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount.rawValue)
+        timeText = UserDefaults.standard.string(forKey: PropertySaveKeys.timeText) ?? TimeTemplateString.timeDefaultString
+        lapTimeText = UserDefaults.standard.string(forKey: PropertySaveKeys.lapTimeText) ?? ""
+        laps = UserDefaults.standard.array(forKey: PropertySaveKeys.laps) as? [String] ?? [String]()
+        count = UserDefaults.standard.integer(forKey: PropertySaveKeys.count)
+        lapCount = UserDefaults.standard.integer(forKey: PropertySaveKeys.lapCount)
         
         state = count > 0 ? .invalid : .default
         
@@ -73,11 +73,11 @@ final class StopWatch: NSObject {
     }
 	
     @objc private func save(){
-        UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText.rawValue)
-        UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText.rawValue)
-        UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps.rawValue)
-        UserDefaults.standard.set(count, forKey: PropertySaveKeys.count.rawValue)
-        UserDefaults.standard.set(lapCount, forKey: PropertySaveKeys.lapCount.rawValue)
+        UserDefaults.standard.set(timeText, forKey: PropertySaveKeys.timeText)
+        UserDefaults.standard.set(lapTimeText, forKey: PropertySaveKeys.lapTimeText)
+        UserDefaults.standard.set(laps, forKey: PropertySaveKeys.laps)
+        UserDefaults.standard.set(count, forKey: PropertySaveKeys.count)
+        UserDefaults.standard.set(lapCount, forKey: PropertySaveKeys.lapCount)
     }
 	
 
@@ -96,13 +96,13 @@ final class StopWatch: NSObject {
         let milliSecond = count % 100
         let seconds = (count - milliSecond) / 100 % 60
         let minutes = (count - seconds - milliSecond) / 6000 % 3600
-        timeText = String (format: TimeTemplateString.timeFormatString.rawValue, minutes,seconds,milliSecond)
+        timeText = String (format: TimeTemplateString.timeFormatString, minutes,seconds,milliSecond)
 		
         lapCount += 1
         let lms = lapCount % 100
         let ls = (lapCount - lms) / 100 % 60
         let lm = (lapCount - ls - lms) / 6000 % 3600
-        lapTimeText = String (format: TimeTemplateString.timeFormatString.rawValue, lm,ls,lms)
+        lapTimeText = String (format: TimeTemplateString.timeFormatString, lm,ls,lms)
     }
 	
     func add(){
@@ -117,12 +117,12 @@ final class StopWatch: NSObject {
         lapCount = 0
 		
         state = .default
-        timeText = TimeTemplateString.timeDefaultString.rawValue
+        timeText = TimeTemplateString.timeDefaultString
 		
-        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText.rawValue)
-        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText.rawValue)
-        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps.rawValue)
-        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count.rawValue)
+        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText)
+        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText)
+        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.laps)
+        UserDefaults.standard.removeObject(forKey: PropertySaveKeys.count)
     }
 }
 
