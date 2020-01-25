@@ -32,13 +32,13 @@ final class StopWatch: NSObject {
 	
 	
 	//MARK: - Properties
-	private var count:          Int     = 0
-	private var lapCount:       Int     = 0
-	private var timeText:       String  = ""
-	private var lapTimeText:    String  = ""
-	
-	private(set) var laps:  [String]    = []
-	private(set) var state: State       = .default
+	private var count:      Int     = 0
+	private var lapCount:   Int     = 0
+    
+	private(set) var time:       String     = ""
+	private(set) var lapTime:    String     = ""
+	private(set) var laps:      [String]    = []
+	private(set) var state:     State       = .default
 	
     public var shortTimeIndex: Int? {
         laps.firstIndex(of: self.laps.min() ?? "")
@@ -46,14 +46,6 @@ final class StopWatch: NSObject {
 	
     public var longTimeIndex: Int? {
         laps.firstIndex(of: self.laps.max() ?? "")
-    }
-	
-    var time: String {
-        timeText
-    }
-	
-    var lapTime: String {
-        lapTimeText
     }
 	
 	
@@ -96,17 +88,17 @@ final class StopWatch: NSObject {
         let milliSecond = count % 100
         let seconds = (count - milliSecond) / 100 % 60
         let minutes = (count - seconds - milliSecond) / 6000 % 3600
-        timeText = String (format: TimeTemplateString.timeFormatString, minutes,seconds,milliSecond)
+        time = String (format: TimeTemplateString.timeFormatString, minutes,seconds,milliSecond)
 		
         lapCount += 1
         let lms = lapCount % 100
         let ls = (lapCount - lms) / 100 % 60
         let lm = (lapCount - ls - lms) / 6000 % 3600
-        lapTimeText = String (format: TimeTemplateString.timeFormatString, lm,ls,lms)
+        lapTime = String (format: TimeTemplateString.timeFormatString, lm,ls,lms)
     }
 	
     func add(){
-        laps.insert(lapTimeText, at: 0)
+        laps.insert(lapTime, at: 0)
         lapCount = 0
     }
 		
@@ -117,7 +109,7 @@ final class StopWatch: NSObject {
         lapCount = 0
 		
         state = .default
-        timeText = TimeTemplateString.timeDefaultString
+        time = TimeTemplateString.timeDefaultString
 		
         UserDefaults.standard.removeObject(forKey: PropertySaveKeys.timeText)
         UserDefaults.standard.removeObject(forKey: PropertySaveKeys.lapTimeText)
