@@ -18,13 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	
-	func applicationWillTerminate(_ application: UIApplication) {
-		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-		NotificationCenter.default.post(name: Notification.Name.Save, object: nil)
-	}
-
+    
 	// MARK: UISceneSession Lifecycle
-
 	@available(iOS 13.0, *)
 	func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 		// Called when a new scene session is being created.

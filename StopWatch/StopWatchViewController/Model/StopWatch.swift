@@ -54,7 +54,7 @@ final class StopWatch: NSObject {
         super.init()
         
         setup()
-        NotificationCenter.default.addObserver(self, selector: #selector(save), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(save), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
 	
 
