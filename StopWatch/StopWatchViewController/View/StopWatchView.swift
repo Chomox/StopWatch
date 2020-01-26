@@ -38,6 +38,7 @@ final class StopWatchView: UIView {
         willSet {
             newValue.layer.cornerRadius = newValue.frame.height / 2
             newValue.backgroundColor = .lapButtonBackground
+            newValue.tintColor = .white
         }
     }
 

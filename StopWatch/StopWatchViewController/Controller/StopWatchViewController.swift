@@ -11,11 +11,11 @@ import UIKit
 final class StopWatchViewController: UIViewController {
 	
     //MARK: - Constant
-    private enum ButtonState: String {
-        case start = "Start"
-        case stop = "Stop"
-        case lap = "Lap"
-        case reset = "Reset"
+    private enum ButtonStateString {
+        static let start    = "Start"
+        static let stop     = "Stop"
+        static let lap      = "Lap"
+        static let reset    = "Reset"
     }
 
 	
@@ -86,22 +86,21 @@ final class StopWatchViewController: UIViewController {
     private func switchButtonsAppearance(state: StopWatch.State ){
         switch state {
         case .valid:
-            stopWatchView?.startButton.setTitle( ButtonState.stop.rawValue, for: .normal)
+            stopWatchView?.startButton.setTitle( ButtonStateString.stop, for: .normal)
             stopWatchView?.startButton.backgroundColor = .stopButtonBackground
             stopWatchView?.startButton.tintColor = .stopButtonText
-            stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
+            stopWatchView?.lapButton.setTitle( ButtonStateString.lap, for: .normal)
             stopWatchView?.lapButton.alpha = 1
         case .invalid:
-            stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
+            stopWatchView?.startButton.setTitle( ButtonStateString.start, for: .normal)
             stopWatchView?.startButton.backgroundColor = .startButtonBackground
             stopWatchView?.startButton.tintColor = .startButtonText
-            stopWatchView?.lapButton.setTitle( ButtonState.reset.rawValue, for: .normal)
+            stopWatchView?.lapButton.setTitle( ButtonStateString.reset, for: .normal)
         case .default:
-            stopWatchView?.startButton.setTitle( ButtonState.start.rawValue, for: .normal)
+            stopWatchView?.startButton.setTitle( ButtonStateString.start, for: .normal)
             stopWatchView?.startButton.backgroundColor = .startButtonBackground
             stopWatchView?.startButton.tintColor = .startButtonText
-            stopWatchView?.lapButton.setTitle( ButtonState.lap.rawValue, for: .normal)
-            stopWatchView?.lapButton.tintColor = .white
+            stopWatchView?.lapButton.setTitle( ButtonStateString.lap, for: .normal)
             stopWatchView?.lapButton.alpha = 0.6
         }
     }
