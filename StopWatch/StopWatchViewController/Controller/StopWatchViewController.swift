@@ -101,7 +101,6 @@ final class StopWatchViewController: UIViewController {
             stopWatchView?.startButton.backgroundColor = .startButtonBackground
             stopWatchView?.startButton.tintColor = .startButtonText
             stopWatchView?.lapButton.setTitle( ButtonStateString.lap, for: .normal)
-            stopWatchView?.lapButton.tintColor = .white
             stopWatchView?.lapButton.alpha = 0.6
         }
     }
