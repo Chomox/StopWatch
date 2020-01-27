@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF61393523DDF72000B4CA0D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BF718375235668F600030550 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		BF7894582361038B00844C66 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		BFB1FA6F235B193900C510DA /* StopWatchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopWatchView.xib; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		BFB3D3F82354F62B00DD716C = {
 			isa = PBXGroup;
 			children = (
+				BF61393523DDF72000B4CA0D /* README.md */,
 				BFB3D4032354F62B00DD716C /* StopWatch */,
 				BFB3D4022354F62B00DD716C /* Products */,
 			);
