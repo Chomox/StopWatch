@@ -35,8 +35,8 @@ final class StopWatch: NSObject {
 	private var count:      Int = 0
 	private var lapCount:   Int = 0
     
-	private(set) var time:      String     = ""
-	private(set) var lapTime:   String     = ""
+	private(set) var time:      String      = ""
+	private(set) var lapTime:   String      = ""
 	private(set) var laps:      [String]    = []
 	private(set) var state:     State       = .default
 	

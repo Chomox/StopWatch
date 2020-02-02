@@ -66,8 +66,8 @@ final class StopWatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-        self.tabBarController?.tabBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        self.tabBarController?.tabBar.tintColor = .tabBarTintColor
+        self.tabBarController?.tabBar.barTintColor = .background
+        self.tabBarController?.tabBar.tintColor = .tabBarTint
 		
         stopWatchView = self.view as? StopWatchView
         stopWatchView?.lapsTableView.dataSource = self
