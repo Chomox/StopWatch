@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF546C1723F04EFC00B2E87E /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF546C1623F04EFC00B2E87E /* CircleButton.swift */; };
 		BF718376235668F600030550 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF718375235668F600030550 /* StopWatch.swift */; };
 		BF7894592361038B00844C66 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7894582361038B00844C66 /* NotificationExtension.swift */; };
 		BFB1FA70235B193900C510DA /* StopWatchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB1FA6F235B193900C510DA /* StopWatchView.xib */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF546C1623F04EFC00B2E87E /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		BF61393523DDF72000B4CA0D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BF718375235668F600030550 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		BF7894582361038B00844C66 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				BFB3D4192354F76B00DD716C /* StopWatchView.swift */,
 				BFB1FA6F235B193900C510DA /* StopWatchView.xib */,
+				BF546C1623F04EFC00B2E87E /* CircleButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				BF718376235668F600030550 /* StopWatch.swift in Sources */,
 				BFB3D4092354F62B00DD716C /* StopWatchViewController.swift in Sources */,
 				BFC448DA23BF847C0030547B /* Color.swift in Sources */,
+				BF546C1723F04EFC00B2E87E /* CircleButton.swift in Sources */,
 				BF7894592361038B00844C66 /* NotificationExtension.swift in Sources */,
 				BFB3D4052354F62B00DD716C /* AppDelegate.swift in Sources */,
 				BFB3D41A2354F76B00DD716C /* StopWatchView.swift in Sources */,
