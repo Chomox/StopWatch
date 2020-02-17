@@ -32,7 +32,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lun-4H-Sms">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lun-4H-Sms" customClass="CircleButton" customModule="StopWatch" customModuleProvider="target">
                     <rect key="frame" x="16" y="414" width="84" height="84"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="84" id="1ve-29-4eF"/>
@@ -41,7 +41,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-ky-RUt">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-ky-RUt" customClass="CircleButton" customModule="StopWatch" customModuleProvider="target">
                     <rect key="frame" x="314" y="414" width="84" height="84"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="84" id="M0b-yx-9gc"/>

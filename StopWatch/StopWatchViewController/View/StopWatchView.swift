@@ -28,15 +28,10 @@ final class StopWatchView: UIView {
         }
     }
 
-    @IBOutlet weak var startButton: UIButton! {
-        willSet {
-            newValue.layer.cornerRadius = newValue.frame.height / 2
-        }
-    }
+    @IBOutlet weak var startButton: CircleButton!
 
-    @IBOutlet weak var lapButton: UIButton! {
+    @IBOutlet weak var lapButton: CircleButton! {
         willSet {
-            newValue.layer.cornerRadius = newValue.frame.height / 2
             newValue.backgroundColor = .lapButtonBackground
             newValue.tintColor = .white
         }

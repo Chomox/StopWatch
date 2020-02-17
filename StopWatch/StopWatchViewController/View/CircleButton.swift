@@ -13,10 +13,16 @@ final class CircleButton: UIButton {
     //MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initialize()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        initialize()
+    }
+    
+    private func initialize(){
+        layer.cornerRadius = frame.height / 2
     }
     
     override func layoutSubviews() {
