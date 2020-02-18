@@ -1,8 +1,10 @@
 # Clone_StopWatch
 
-<img src="https://user-images.githubusercontent.com/43462166/73364897-aec4bc80-42ee-11ea-89cd-576adf2803c2.PNG" width="320"><img src="https://user-images.githubusercontent.com/43462166/73365079-082ceb80-42ef-11ea-968e-22b0e1c02ddb.PNG" width="320">
+<img src="https://user-images.githubusercontent.com/43462166/74788534-5ed98400-52f5-11ea-9d00-13b611f7f148.PNG" width="320"><img src="https://user-images.githubusercontent.com/43462166/74788573-7b75bc00-52f5-11ea-9be9-086e152a6d8c.PNG" width="320">
 
 # Summary
+
+It is a clone of StopWatch in iPhone Clock App
 
 ## Usage
 
