@@ -80,6 +80,16 @@ final class StopWatchViewController: UIViewController {
 
         switchButtonsAppearance(state: stopWatch.state)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 13, *){
+            navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else {
+            navigationController?.navigationBar.barTintColor = .background
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        }
+    }
 	
 	
     //MARK: - Appearance
