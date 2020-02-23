@@ -28,8 +28,6 @@ final class StopWatchView: UIView {
         }
     }
 
-    @IBOutlet weak var startButton: CircleButton!
-
     @IBOutlet weak var lapButton: CircleButton! {
         willSet {
             newValue.backgroundColor = .lapButtonBackground
@@ -37,7 +35,8 @@ final class StopWatchView: UIView {
         }
     }
 
-    @IBOutlet weak var lapsTableView: UITableView!
+    @IBOutlet weak var startButton:     CircleButton!
+    @IBOutlet weak var lapsTableView:   UITableView!
 	
 
     //MARK: - Life Cycle
